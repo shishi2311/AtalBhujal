@@ -1,5 +1,5 @@
 // src/lib/api.ts
-export const BASE_URL = "http://localhost:8000"; // FastAPI backend
+export const BASE_URL = "https://atalbhujal.onrender.com"; // FastAPI backend
 
 // Helper for POST requests
 export async function postData(endpoint: string, data: any) {
