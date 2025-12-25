@@ -5,3 +5,4 @@ fastapi[all]
 matplotlib
 reportlab
 python-multipart
+pandas
