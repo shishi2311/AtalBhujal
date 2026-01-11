@@ -9,7 +9,7 @@ from services.qa import build_index, search as qa_search
 from services.report import generate_report_pdf
 from pydantic import BaseModel
 from fastapi.staticfiles import StaticFiles
-
+from pathlib import Path
 logging.basicConfig(level=logging.INFO)
 
 app = FastAPI()
@@ -41,8 +41,10 @@ def clean_column(val):
 @lru_cache(maxsize=1)
 def get_water_levels_df():
     logging.info("Loading groundwater CSV data...")
-    BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-    DATA_PATH = os.path.join(BASE_DIR, "..", "data", "atalbhujal_water_levels.csv")
+    
+    BASE_DIR = Path(__file__).resolve().parent.parent
+    DATA_PATH = BASE_DIR / "data" / "atalbhujal_water_levels.csv"
+
     
     if not os.path.exists(DATA_PATH):
         raise FileNotFoundError(f"CSV not found at {DATA_PATH}")
